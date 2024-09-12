@@ -39,6 +39,15 @@ Example: `feat: add mood trend visualization`
 - Maximum line length is 120 characters.
 - Use meaningful variable and function names.
 
+## CSS Conventions
+
+- Use Tailwind CSS utility classes for styling.
+- Follow a mobile-first approach.
+- Use semantic HTML elements for better structure and SEO.
+- Maintain a consistent color scheme throughout the application.
+- Use custom CSS classes sparingly, prefer Tailwind utilities when possible.
+- When custom CSS is necessary, use BEM (Block Element Modifier) naming convention.
+
 ## Testing
 
 - Write unit tests for new features and bug fixes.

@@ -1,17 +1,17 @@
-<!-- templates/mood_logger/log_mood.html -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}Log Mood - Emoji Mood Tracker{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-8">
-    <h2 class="text-2xl font-bold mb-4">Log Your Mood</h2>
-    <form method="post" class="max-w-lg">
+<section class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Log Your Mood</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mt-4">
             Log Mood
         </button>
     </form>
-</div>
+</section>
 {% endblock %}
