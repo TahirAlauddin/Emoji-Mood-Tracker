@@ -1,0 +1,68 @@
+[
+    {
+        "model": "mood.mood",
+        "pk": 6,
+        "fields": {
+            "user": 1,
+            "emoji": "≡ƒÖé",
+            "date": "2024-09-12",
+            "notes": "I'm happy",
+            "intensity": 2
+        }
+    },
+    {
+        "model": "mood.mood",
+        "pk": 5,
+        "fields": {
+            "user": 2,
+            "emoji": "≡ƒÿó",
+            "date": "2024-09-12",
+            "notes": "sad",
+            "intensity": 4
+        }
+    },
+    {
+        "model": "mood.mood",
+        "pk": 4,
+        "fields": {
+            "user": 1,
+            "emoji": "≡ƒÿó",
+            "date": "2024-09-10",
+            "notes": "sad",
+            "intensity": 4
+        }
+    },
+    {
+        "model": "mood.mood",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "emoji": "≡ƒÿó",
+            "date": "2024-09-09",
+            "notes": "sad",
+            "intensity": 1
+        }
+    },
+    {
+        "model": "mood.mood",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "emoji": "≡ƒÖé",
+            "date": "2024-09-08",
+            "notes": "I'm happy",
+            "intensity": 4
+        }
+    },
+    {
+        "model": "mood.mood",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "emoji": "≡ƒÿó",
+            "date": "2024-09-07",
+            "notes": "sad",
+            "intensity": 4
+        }
+    }
+]

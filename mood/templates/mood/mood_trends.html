@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">Mood Trends</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-2xl font-semibold mb-2">Weekly Trend</h2>
+            <canvas id="weeklyTrendChart"></canvas>
+        </div>
+        <div>
+            <h2 class="text-2xl font-semibold mb-2">Monthly Trend</h2>
+            <canvas id="monthlyTrendChart"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const weeklyTrendData = {{ weekly_trend|safe }};
+    const monthlyTrendData = {{ monthly_trend|safe }};
+    console.log(weeklyTrendData)
+    console.log(monthlyTrendData)
+
+    function createChart(elementId, data, label) {
+        const ctx = document.getElementById(elementId).getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(item => item.date),
+                datasets: [{
+                    label: label,
+                    data: data.map(item => item.avg_intensity),
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5
+                    }
+                }
+            }
+        });
+    }
+
+    createChart('weeklyTrendChart', weeklyTrendData, 'Weekly Mood Trend');
+    createChart('monthlyTrendChart', monthlyTrendData, 'Monthly Mood Trend');
+</script>
+{% endblock %}

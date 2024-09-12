@@ -1,3 +1,5 @@
+from django.db.models import Avg
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -20,6 +22,28 @@ class Mood(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         help_text="Intensity of the mood (1-5)",
     )
+
+    @classmethod
+    def get_weekly_trend(cls, user):
+        end_date = timezone.now().date()
+        start_date = end_date - timezone.timedelta(days=7)
+        return (
+            cls.objects.filter(user=user, date__range=[start_date, end_date])
+            .values("date")
+            .annotate(avg_intensity=Avg("intensity"))
+            .order_by("date")
+        )
+
+    @classmethod
+    def get_monthly_trend(cls, user):
+        end_date = timezone.now().date()
+        start_date = end_date - timezone.timedelta(days=30)
+        return (
+            cls.objects.filter(user=user, date__range=[start_date, end_date])
+            .values("date")
+            .annotate(avg_intensity=Avg("intensity"))
+            .order_by("date")
+        )
 
     class Meta:
         unique_together = ["user", "date"]
