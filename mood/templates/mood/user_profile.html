@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}User Profile - Emoji Mood Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Your Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
+            Save Changes
+        </button>
+    </form>
+</div>
+{% endblock %}
