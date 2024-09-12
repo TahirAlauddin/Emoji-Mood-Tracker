@@ -1,0 +1,32 @@
+{% load static %}
+{% load tailwind_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Mood Tracker</title>
+    {% load static %}
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="bg-blue-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'dashboard' %}" class="text-white text-2xl font-bold">Emoji Mood Tracker</a>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'log_mood' %}" class="text-white mr-4">Log Mood</a>
+                    <a href="{% url 'logout' %}" class="text-white">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto mt-8">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

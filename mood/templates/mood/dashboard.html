@@ -1,0 +1,18 @@
+<!-- templates/mood_logger/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h2 class="text-2xl font-bold mb-4">Your Recent Moods</h2>
+    <div class="grid grid-cols-7 gap-4">
+        {% for mood in recent_moods %}
+            <div class="text-center p-4 bg-gray-100 rounded">
+                <span class="text-4xl">{{ mood.emoji }}</span>
+                <p class="text-sm mt-2">{{ mood.date|date:"M d" }}</p>
+            </div>
+        {% empty %}
+            <p>No moods logged yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
