@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}Home - Emoji Mood Tracker{% endblock %}
+
 {% block content %}
-<div class="text-center">
-    <h1 class="text-4xl font-bold mb-4">Welcome to Emoji Mood Tracker</h1>
-    <p class="mb-4">Track your daily mood with emojis!</p>
+<section class="text-center">
+    <h1 class="text-4xl font-bold mb-6">Welcome to Emoji Mood Tracker</h1>
+    <p class="text-xl mb-8">Track your daily mood with emojis and gain insights into your emotional wellbeing!</p>
     {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to Dashboard</a>
+        <a href="{% url 'dashboard' %}" class="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition duration-300">Go to Dashboard</a>
     {% else %}
-        <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</a>
+        <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition duration-300">Get Started</a>
     {% endif %}
-</div>
+</section>
 {% endblock %}

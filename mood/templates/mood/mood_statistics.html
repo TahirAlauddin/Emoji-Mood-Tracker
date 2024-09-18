@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold mb-4">Mood Statistics</h1>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <p class="mb-2">Total moods logged: {{ total_moods }}</p>
+        <p class="mb-2">Average mood intensity: {{ average_intensity|floatformat:2 }}</p>
+        <h2 class="text-xl font-semibold mt-4 mb-2">Mood Distribution:</h2>
+        <ul>
+            {% for mood in mood_distribution %}
+                <li>{{ mood.emoji }}: {{ mood.count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
