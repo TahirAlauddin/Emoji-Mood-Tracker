@@ -71,3 +71,21 @@ def user_profile(request):
         form = UserProfileForm(instance=request.user.userprofile)
     
     return render(request, 'mood/user_profile.html', {'form': form})
+
+
+from django.db.models import Avg, Count
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def mood_statistics(request):
+    user_moods = Mood.objects.filter(user=request.user)
+    total_moods = user_moods.count()
+    average_intensity = user_moods.aggregate(Avg('intensity'))['intensity__avg']
+    mood_distribution = user_moods.values('emoji').annotate(count=Count('emoji'))
+
+    context = {
+        'total_moods': total_moods,
+        'average_intensity': average_intensity,
+        'mood_distribution': mood_distribution,
+    }
+    return render(request, 'mood/mood_statistics.html', context)
