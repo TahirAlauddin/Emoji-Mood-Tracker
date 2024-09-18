@@ -1,4 +1,8 @@
 # mood/views.py
+from django.http import JsonResponse
+from django.db import connections
+from django.db.utils import OperationalError
+from django.views.decorators.cache import never_cache
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Mood
@@ -89,3 +93,11 @@ def mood_statistics(request):
         'mood_distribution': mood_distribution,
     }
     return render(request, 'mood/mood_statistics.html', context)
+
+@never_cache
+def health_check(request):
+    try:
+        connections['default'].cursor()
+    except OperationalError:
+        return JsonResponse({"status": "Database unavailable"}, status=503)
+    return JsonResponse({"status": "OK"})
