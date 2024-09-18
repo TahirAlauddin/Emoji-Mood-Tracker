@@ -1,5 +1,5 @@
 from django import forms
-from .models import Mood, UserProfile
+from .models import Mood, UserProfile, EMOJI_CHOICES
 
 
 class MoodForm(forms.ModelForm):
@@ -12,10 +12,12 @@ class MoodForm(forms.ModelForm):
             "notes": forms.Textarea(attrs={"class": "form-textarea", "rows": 3}),
         }
 
+
 class UserProfileForm(forms.ModelForm):
+
     class Meta:
         model = UserProfile
-        fields = ['bio', 'birth_date', 'preferred_emoji']
+        fields = ["bio", "birth_date", "preferred_emoji"]
         widgets = {
-            'birth_date': forms.DateInput(attrs={'type': 'date'}),
+            "birth_date": forms.DateInput(attrs={"type": "date"}),
         }

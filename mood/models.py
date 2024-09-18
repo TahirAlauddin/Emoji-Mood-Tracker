@@ -6,16 +6,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+EMOJI_CHOICES = [
+    ("😄", "Very Happy"),
+    ("🙂", "Happy"),
+    ("😐", "Neutral"),
+    ("🙁", "Sad"),
+    ("😢", "Very Sad"),
+]
 
 class Mood(models.Model):
-    EMOJI_CHOICES = [
-        ("😄", "Very Happy"),
-        ("🙂", "Happy"),
-        ("😐", "Neutral"),
-        ("🙁", "Sad"),
-        ("😢", "Very Sad"),
-    ]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="moods")
     emoji = models.CharField(max_length=2, choices=EMOJI_CHOICES)
     date = models.DateField(auto_now_add=True)
