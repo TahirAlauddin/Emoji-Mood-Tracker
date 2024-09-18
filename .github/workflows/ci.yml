@@ -57,3 +57,6 @@ jobs:
       run: |
         locust --headless -f locustfile.py --host http://localhost:8000 --users 10 --run-time 1m
         
+
+
+        
